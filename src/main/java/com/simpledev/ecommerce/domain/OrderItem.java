@@ -2,13 +2,13 @@ package com.simpledev.ecommerce.domain;
 
 import java.math.BigDecimal;
 
-public class ItemOrder {
+public class OrderItem {
 
 	private Long idItem;
 	private BigDecimal price;
 	private int quantity;
 
-	public ItemOrder(Long idItem, BigDecimal price, int quantity) {
+	public OrderItem(Long idItem, BigDecimal price, int quantity) {
 		this.idItem = idItem;
 		this.price = price;
 		this.quantity = quantity;
