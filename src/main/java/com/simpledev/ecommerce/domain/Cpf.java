@@ -4,6 +4,8 @@ import java.util.Arrays;
 
 public class Cpf {
 
+	private static final int SECOND_DIGIT_FACTOR = 11;
+	private static final int FIRST_DIGIT_FACTOR = 10;
 	private String value;
 
 	public Cpf(String value) {
@@ -21,14 +23,13 @@ public class Cpf {
 		if (!isValidLength(cpf)) {
 			return false;
 		}
-		String firstCharacter = cpf.substring(0, 1);
-		if (isAllSameCharacter(cpf, firstCharacter)) {
+		if (isAllSameCharacter(cpf)) {
 			return false;
 		}
-		int digit1 = calculateCheckDigit(cpf, 10);
-		int digit2 = calculateCheckDigit(cpf, 11);
+		int calculatedCheckDigit1 = calculateCheckDigit(cpf, FIRST_DIGIT_FACTOR);
+		int calculatedCheckDigit2 = calculateCheckDigit(cpf, SECOND_DIGIT_FACTOR);
 		String checkDigit = extractCheckDigit(cpf);
-		String calculatedCheckDigit = "" + digit1 + "" + digit2;
+		String calculatedCheckDigit = calculatedCheckDigit1 + "" + calculatedCheckDigit2;
 		return checkDigit.equals(calculatedCheckDigit);
 	}
 
@@ -47,11 +48,12 @@ public class Cpf {
 		return (rest < 2) ? 0 : 11 - rest;
 	}
 
-	private boolean isValidLength(String cpf) {
+	private boolean isValidLength(final String cpf) {
 		return cpf.length() == 11;
 	}
 
-	private boolean isAllSameCharacter(String cpf, String firstCharacter) {
+	private boolean isAllSameCharacter(final String cpf) {
+		String firstCharacter = cpf.substring(0, 1);
 		return Arrays.asList(cpf.split("")).stream().allMatch(s -> s.equals(firstCharacter));
 	}
 
