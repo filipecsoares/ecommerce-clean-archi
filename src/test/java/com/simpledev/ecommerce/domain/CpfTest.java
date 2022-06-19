@@ -46,4 +46,28 @@ class CpfTest {
 		assertTrue(actualMessage.contains(expectedMessage));
 	}
 
+	@Test
+	void shouldNotValidateANullCpf() {
+		Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+			new Cpf(null);
+		});
+
+		String expectedMessage = "Invalid cpf";
+		String actualMessage = exception.getMessage();
+
+		assertTrue(actualMessage.contains(expectedMessage));
+	}
+
+	@Test
+	void shouldNotValidateACpfWithWrongLength() {
+		Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+			new Cpf("123.456.789-1000");
+		});
+
+		String expectedMessage = "Invalid cpf";
+		String actualMessage = exception.getMessage();
+
+		assertTrue(actualMessage.contains(expectedMessage));
+	}
+
 }

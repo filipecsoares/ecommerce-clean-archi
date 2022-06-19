@@ -8,6 +8,7 @@ public class Order {
 
 	private Cpf cpf;
 	private List<ItemOrder> items;
+	private Coupon coupon;
 
 	public Order(String cpf) {
 		this.cpf = new Cpf(cpf);
@@ -23,6 +24,13 @@ public class Order {
 		for (ItemOrder orderItem : items) {
 			total = total.add(orderItem.getTotal());
 		}
+		if (this.coupon != null) {
+			total = total.subtract(this.coupon.calculateDiscount(total));
+		}
 		return total;
+	}
+
+	public void addCoupon(Coupon coupon) {
+		this.coupon = coupon;
 	}
 }

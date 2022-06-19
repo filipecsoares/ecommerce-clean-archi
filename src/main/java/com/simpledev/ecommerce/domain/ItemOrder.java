@@ -14,10 +14,6 @@ public class ItemOrder {
 		this.quantity = quantity;
 	}
 
-	public Long getIdItem() {
-		return idItem;
-	}
-
 	public BigDecimal getPrice() {
 		return price;
 	}
