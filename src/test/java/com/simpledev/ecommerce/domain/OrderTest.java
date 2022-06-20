@@ -57,4 +57,18 @@ class OrderTest {
 
 		assertEquals(BigDecimal.valueOf(2000.0), order.getTotal());
 	}
+
+	@Test
+	void shouldCreateAnOrderWithThreeItemsAndCalculateFreight() {
+		Order order = new Order("918.461.310-65");
+		order.addItem(new Item(1L, "Guitarra", BigDecimal.valueOf(1000), new Dimension(100, 30, 10), 3), 1);
+		order.addItem(new Item(2L, "Amplificador", BigDecimal.valueOf(5000), new Dimension(50, 50, 50), 20), 1);
+		order.addItem(new Item(3L, "Cabo", BigDecimal.valueOf(30), new Dimension(10, 10, 10), 1), 3);
+
+		BigDecimal freight = order.getFreight();
+		BigDecimal total = order.getTotal();
+
+		assertEquals(BigDecimal.valueOf(260.0), freight);
+		assertEquals(BigDecimal.valueOf(6350.0), total);
+	}
 }

@@ -11,20 +11,24 @@ public class Order {
 	private List<OrderItem> items;
 	private Coupon coupon;
 	private LocalDateTime createdAt;
+	private Freight freigth;
 
 	public Order(String cpf) {
 		this.cpf = new Cpf(cpf);
 		this.items = new ArrayList<>();
 		this.createdAt = LocalDateTime.now();
+		this.freigth = new Freight();
 	}
 
 	public Order(String cpf, LocalDateTime createdAt) {
 		this.cpf = new Cpf(cpf);
 		this.items = new ArrayList<>();
 		this.createdAt = createdAt;
+		this.freigth = new Freight();
 	}
 
 	public void addItem(Item item, int quantity) {
+		this.freigth.addItem(item, quantity);
 		this.items.add(new OrderItem(item.getId(), item.getPrice(), quantity));
 	}
 
@@ -36,6 +40,7 @@ public class Order {
 		if (this.coupon != null) {
 			total = total.subtract(this.coupon.calculateDiscount(total));
 		}
+		total = total.add(this.freigth.getTotal());
 		return total;
 	}
 
@@ -43,5 +48,9 @@ public class Order {
 		if (!coupon.isExpired(this.createdAt)) {
 			this.coupon = coupon;
 		}
+	}
+
+	public BigDecimal getFreight() {
+		return this.freigth.getTotal();
 	}
 }
