@@ -27,6 +27,10 @@ public class Item {
 		return this.id;
 	}
 
+	public String getDescription() {
+		return description;
+	}
+
 	public BigDecimal getPrice() {
 		return this.price;
 	}

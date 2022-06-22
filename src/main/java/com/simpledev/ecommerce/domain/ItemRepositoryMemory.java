@@ -21,4 +21,9 @@ public class ItemRepositoryMemory implements ItemRepository {
 		this.items.add(item);
 	}
 
+	@Override
+	public List<Item> getAll() {
+		return this.items;
+	}
+
 }
