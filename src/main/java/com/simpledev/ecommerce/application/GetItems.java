@@ -1,7 +1,11 @@
-package com.simpledev.ecommerce.domain;
+package com.simpledev.ecommerce.application;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import com.simpledev.ecommerce.application.dto.ItemOutput;
+import com.simpledev.ecommerce.domain.entity.Item;
+import com.simpledev.ecommerce.domain.repository.ItemRepository;
 
 public class GetItems {
 

@@ -1,7 +1,10 @@
-package com.simpledev.ecommerce.domain;
+package com.simpledev.ecommerce.infra.repository.memory;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import com.simpledev.ecommerce.domain.entity.Order;
+import com.simpledev.ecommerce.domain.repository.OrderRepository;
 
 public class OrderRepositoryMemory implements OrderRepository {
 

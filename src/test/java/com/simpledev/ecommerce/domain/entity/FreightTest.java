@@ -1,10 +1,14 @@
-package com.simpledev.ecommerce.domain;
+package com.simpledev.ecommerce.domain.entity;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.math.BigDecimal;
 
 import org.junit.jupiter.api.Test;
+
+import com.simpledev.ecommerce.domain.entity.Dimension;
+import com.simpledev.ecommerce.domain.entity.Freight;
+import com.simpledev.ecommerce.domain.entity.Item;
 
 class FreightTest {
 

@@ -1,4 +1,4 @@
-package com.simpledev.ecommerce.domain;
+package com.simpledev.ecommerce.domain.entity;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -8,6 +8,11 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 import org.junit.jupiter.api.Test;
+
+import com.simpledev.ecommerce.domain.entity.Coupon;
+import com.simpledev.ecommerce.domain.entity.Dimension;
+import com.simpledev.ecommerce.domain.entity.Item;
+import com.simpledev.ecommerce.domain.entity.Order;
 
 class OrderTest {
 

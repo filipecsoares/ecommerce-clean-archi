@@ -1,11 +1,17 @@
-package com.simpledev.ecommerce.domain;
+package com.simpledev.ecommerce.application;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.math.BigDecimal;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
+
+import com.simpledev.ecommerce.application.dto.ItemOutput;
+import com.simpledev.ecommerce.domain.entity.Dimension;
+import com.simpledev.ecommerce.domain.entity.Item;
+import com.simpledev.ecommerce.domain.repository.ItemRepository;
+import com.simpledev.ecommerce.infra.repository.memory.ItemRepositoryMemory;
 
 class GetItemsTest {
 

@@ -1,4 +1,4 @@
-package com.simpledev.ecommerce.domain;
+package com.simpledev.ecommerce.application.dto;
 
 import java.util.List;
 

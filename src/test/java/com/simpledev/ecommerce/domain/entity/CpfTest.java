@@ -1,10 +1,12 @@
-package com.simpledev.ecommerce.domain;
+package com.simpledev.ecommerce.domain.entity;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
+
+import com.simpledev.ecommerce.domain.entity.Cpf;
 
 class CpfTest {
 

@@ -1,8 +1,10 @@
-package com.simpledev.ecommerce.domain;
+package com.simpledev.ecommerce.domain.entity;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
+
+import com.simpledev.ecommerce.domain.entity.Dimension;
 
 class DimensionTest {
 

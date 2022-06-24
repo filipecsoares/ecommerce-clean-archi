@@ -1,4 +1,4 @@
-package com.simpledev.ecommerce.domain;
+package com.simpledev.ecommerce.application;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -7,6 +7,16 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
+
+import com.simpledev.ecommerce.application.dto.OrderItemInput;
+import com.simpledev.ecommerce.application.dto.PlaceOrderInput;
+import com.simpledev.ecommerce.application.dto.PlaceOrderOutput;
+import com.simpledev.ecommerce.domain.entity.Dimension;
+import com.simpledev.ecommerce.domain.entity.Item;
+import com.simpledev.ecommerce.domain.repository.ItemRepository;
+import com.simpledev.ecommerce.domain.repository.OrderRepository;
+import com.simpledev.ecommerce.infra.repository.memory.ItemRepositoryMemory;
+import com.simpledev.ecommerce.infra.repository.memory.OrderRepositoryMemory;
 
 class PlaceOrderTest {
 
