@@ -22,8 +22,14 @@ public class ItemRepositoryDatabase implements ItemRepository {
 
 	@Override
 	public void save(Item item) {
-		// TODO Auto-generated method stub
-
+		ItemModel itemModel;
+		if (item.getDimension() != null) {
+			itemModel = new ItemModel(item.getDescription(), item.getPrice(), item.getDimension().getWidth(),
+					item.getDimension().getHeight(), item.getDimension().getLength(), item.getWeight());
+		} else {
+			itemModel = new ItemModel(item.getDescription(), item.getPrice(), item.getWeight());
+		}
+		this.itemJPARepository.save(itemModel);
 	}
 
 	@Override

@@ -35,6 +35,14 @@ public class Item {
 		return this.price;
 	}
 
+	public Dimension getDimension() {
+		return dimension;
+	}
+
+	public double getWeight() {
+		return weight;
+	}
+
 	public double getVolume() {
 		if (this.dimension != null) {
 			return this.dimension.getVolume();
