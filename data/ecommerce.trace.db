@@ -1,0 +1,3 @@
+2022-06-25 15:08:57 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "ITEM" not found (this database is empty); SQL statement:
+select itemmodel0_.id as id1_0_, itemmodel0_.description as descript2_0_, itemmodel0_.height as height3_0_, itemmodel0_.length as length4_0_, itemmodel0_.price as price5_0_, itemmodel0_.weight as weight6_0_, itemmodel0_.width as width7_0_ from item itemmodel0_ [42104-212]
