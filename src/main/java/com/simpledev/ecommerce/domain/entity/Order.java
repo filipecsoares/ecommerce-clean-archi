@@ -12,19 +12,22 @@ public class Order {
 	private Coupon coupon;
 	private LocalDateTime createdAt;
 	private Freight freigth;
+	private OrderCode code;
 
 	public Order(String cpf) {
 		this.cpf = new Cpf(cpf);
 		this.items = new ArrayList<>();
 		this.createdAt = LocalDateTime.now();
 		this.freigth = new Freight();
+		this.code = new OrderCode(this.createdAt, 1);
 	}
 
-	public Order(String cpf, LocalDateTime createdAt) {
+	public Order(String cpf, LocalDateTime createdAt, Integer sequence) {
 		this.cpf = new Cpf(cpf);
 		this.items = new ArrayList<>();
 		this.createdAt = createdAt;
 		this.freigth = new Freight();
+		this.code = new OrderCode(this.createdAt, sequence);
 	}
 
 	public void addItem(Item item, int quantity) {
@@ -52,5 +55,9 @@ public class Order {
 
 	public BigDecimal getFreight() {
 		return this.freigth.getTotal();
+	}
+
+	public String getCode() {
+		return code.getValue();
 	}
 }

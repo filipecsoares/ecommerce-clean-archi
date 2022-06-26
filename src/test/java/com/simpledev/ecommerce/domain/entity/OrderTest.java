@@ -9,11 +9,6 @@ import java.time.LocalDateTime;
 
 import org.junit.jupiter.api.Test;
 
-import com.simpledev.ecommerce.domain.entity.Coupon;
-import com.simpledev.ecommerce.domain.entity.Dimension;
-import com.simpledev.ecommerce.domain.entity.Item;
-import com.simpledev.ecommerce.domain.entity.Order;
-
 class OrderTest {
 
 	@Test
@@ -53,7 +48,7 @@ class OrderTest {
 
 	@Test
 	void shouldCreateAnOrderWithExpiredDiscountCoupon() {
-		Order order = new Order("918.461.310-65", LocalDateTime.of(2022, 2, 5, 1, 1));
+		Order order = new Order("918.461.310-65", LocalDateTime.of(2022, 2, 5, 1, 1), 1);
 		order.addItem(new Item(1L, "Guitar", BigDecimal.valueOf(500)), 1);
 		order.addItem(new Item(2L, "Book I", BigDecimal.valueOf(100)), 2);
 		order.addItem(new Item(3L, "TV", BigDecimal.valueOf(1300.0)), 1);
@@ -75,5 +70,16 @@ class OrderTest {
 
 		assertEquals(BigDecimal.valueOf(260.0), freight);
 		assertEquals(BigDecimal.valueOf(6350.0), total);
+	}
+
+	@Test
+	void shouldCreateAnOrderWithThreeItemsAndGenerateCode() {
+		Order order = new Order("918.461.310-65");
+		order.addItem(new Item(1L, "Guitar", BigDecimal.valueOf(1000)), 1);
+		order.addItem(new Item(2L, "Book I", BigDecimal.valueOf(25.5)), 2);
+		order.addItem(new Item(3L, "TV", BigDecimal.valueOf(1500.0)), 1);
+
+		assertEquals(BigDecimal.valueOf(2551.0), order.getTotal());
+		assertEquals("202200000001", order.getCode());
 	}
 }
