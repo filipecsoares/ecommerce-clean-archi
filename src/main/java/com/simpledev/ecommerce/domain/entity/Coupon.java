@@ -24,6 +24,10 @@ public class Coupon {
 	public int getPercentage() {
 		return this.percentage;
 	}
+	
+	public String getCode() {
+		return code;
+	}
 
 	public BigDecimal calculateDiscount(BigDecimal total) {
 		return total.multiply(BigDecimal.valueOf(this.getPercentage())).divide(BigDecimal.valueOf(100));

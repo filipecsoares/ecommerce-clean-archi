@@ -34,6 +34,10 @@ public class Order {
 		this.freigth.addItem(item, quantity);
 		this.items.add(new OrderItem(item.getId(), item.getPrice(), quantity));
 	}
+	
+	public Cpf getCpf() {
+		return cpf;
+	}
 
 	public BigDecimal getTotal() {
 		BigDecimal total = BigDecimal.ZERO;
