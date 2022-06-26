@@ -74,7 +74,7 @@ class OrderTest {
 
 	@Test
 	void shouldCreateAnOrderWithThreeItemsAndGenerateCode() {
-		Order order = new Order("918.461.310-65");
+		Order order = new Order("918.461.310-65", LocalDateTime.of(2022, 3, 10, 1, 0), 1);
 		order.addItem(new Item(1L, "Guitar", BigDecimal.valueOf(1000)), 1);
 		order.addItem(new Item(2L, "Book I", BigDecimal.valueOf(25.5)), 2);
 		order.addItem(new Item(3L, "TV", BigDecimal.valueOf(1500.0)), 1);

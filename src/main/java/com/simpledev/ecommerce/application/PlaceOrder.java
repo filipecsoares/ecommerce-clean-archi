@@ -21,14 +21,15 @@ public class PlaceOrder {
 	}
 
 	public PlaceOrderOutput execute(PlaceOrderInput input) {
-		Order order = new Order(input.getCpf());
+		Integer sequence = this.orderRepository.count() + 1;
+		Order order = new Order(input.getCpf(), input.getCreatedAt(), sequence);
 		for (OrderItemInput ordemItem : input.getOrdemItems()) {
 			Item item = this.itemRepository.get(ordemItem.getIdItem());
 			order.addItem(item, ordemItem.getQuantity());
 		}
 		this.orderRepository.save(order);
 		BigDecimal total = order.getTotal();
-		return new PlaceOrderOutput(total);
+		return new PlaceOrderOutput(total, order.getCode());
 	}
 
 }

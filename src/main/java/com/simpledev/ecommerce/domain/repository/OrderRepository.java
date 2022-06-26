@@ -5,4 +5,6 @@ import com.simpledev.ecommerce.domain.entity.Order;
 public interface OrderRepository {
 
 	void save(Order order);
+
+	int count();
 }
