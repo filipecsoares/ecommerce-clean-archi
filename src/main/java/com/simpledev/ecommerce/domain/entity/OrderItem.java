@@ -25,4 +25,8 @@ public class OrderItem {
 	public BigDecimal getTotal() {
 		return this.getPrice().multiply(BigDecimal.valueOf(this.getQuantity()));
 	}
+	
+	public Long getIdItem() {
+		return idItem;
+	}
 }

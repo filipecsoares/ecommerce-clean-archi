@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.simpledev.ecommerce.domain.entity.Item;
 import com.simpledev.ecommerce.domain.repository.ItemRepository;
+import com.simpledev.ecommerce.infra.repository.database.jparepositories.ItemJPARepository;
 import com.simpledev.ecommerce.infra.repository.database.models.ItemModel;
 
 public class ItemRepositoryDatabase implements ItemRepository {

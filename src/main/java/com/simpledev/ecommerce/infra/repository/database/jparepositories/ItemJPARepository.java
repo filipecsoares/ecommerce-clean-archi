@@ -1,4 +1,4 @@
-package com.simpledev.ecommerce.infra.repository.database;
+package com.simpledev.ecommerce.infra.repository.database.jparepositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

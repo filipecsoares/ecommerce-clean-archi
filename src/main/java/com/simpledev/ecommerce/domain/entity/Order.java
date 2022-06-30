@@ -13,13 +13,15 @@ public class Order {
 	private LocalDateTime createdAt;
 	private Freight freigth;
 	private OrderCode code;
+	private Long sequence;
 
 	public Order(String cpf) {
 		this.cpf = new Cpf(cpf);
 		this.items = new ArrayList<>();
 		this.createdAt = LocalDateTime.now();
 		this.freigth = new Freight();
-		this.code = new OrderCode(this.createdAt, 1l);
+		this.sequence = 1l;
+		this.code = new OrderCode(this.createdAt, this.sequence);
 	}
 
 	public Order(String cpf, LocalDateTime createdAt, Long sequence) {
@@ -27,7 +29,8 @@ public class Order {
 		this.items = new ArrayList<>();
 		this.createdAt = createdAt;
 		this.freigth = new Freight();
-		this.code = new OrderCode(this.createdAt, sequence);
+		this.sequence = sequence;
+		this.code = new OrderCode(this.createdAt, this.sequence);
 	}
 
 	public void addItem(Item item, int quantity) {
@@ -63,5 +66,25 @@ public class Order {
 
 	public String getCode() {
 		return code.getValue();
+	}
+
+	public List<OrderItem> getItems() {
+		return items;
+	}
+
+	public OrderCoupon getCoupon() {
+		return coupon;
+	}
+
+	public LocalDateTime getCreatedAt() {
+		return createdAt;
+	}
+
+	public Freight getFreigth() {
+		return freigth;
+	}
+	
+	public Long getSequence() {
+		return sequence;
 	}
 }
