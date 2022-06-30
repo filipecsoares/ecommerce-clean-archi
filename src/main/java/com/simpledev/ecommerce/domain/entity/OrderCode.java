@@ -6,7 +6,7 @@ public class OrderCode {
 
 	private String value;
 
-	public OrderCode(LocalDateTime date, Integer sequence) {
+	public OrderCode(LocalDateTime date, Long sequence) {
 		this.value = generateCode(date, sequence);
 	}
 
@@ -14,7 +14,7 @@ public class OrderCode {
 		return value;
 	}
 
-	private String generateCode(LocalDateTime date, Integer sequence) {
+	private String generateCode(LocalDateTime date, Long sequence) {
 		String formatedSequence = String.format("%1$" + 8 + "s", sequence).replace(' ', '0');
 		return date.getYear() + formatedSequence;
 	}

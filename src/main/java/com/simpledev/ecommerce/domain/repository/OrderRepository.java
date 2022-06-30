@@ -6,5 +6,5 @@ public interface OrderRepository {
 
 	void save(Order order);
 
-	int count();
+	long count();
 }

@@ -20,8 +20,7 @@ public class OrderRepositoryMemory implements OrderRepository {
 	}
 
 	@Override
-	public int count() {
+	public long count() {
 		return this.orders.size();
 	}
-
 }

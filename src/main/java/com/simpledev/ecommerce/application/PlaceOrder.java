@@ -26,7 +26,7 @@ public class PlaceOrder {
 	}
 
 	public PlaceOrderOutput execute(PlaceOrderInput input) {
-		Integer sequence = this.orderRepository.count() + 1;
+		Long sequence = this.orderRepository.count() + 1;
 		Order order = new Order(input.getCpf(), input.getCreatedAt(), sequence);
 		for (OrderItemInput ordemItem : input.getOrdemItems()) {
 			Item item = this.itemRepository.get(ordemItem.getIdItem());

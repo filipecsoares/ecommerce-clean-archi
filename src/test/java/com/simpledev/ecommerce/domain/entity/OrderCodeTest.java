@@ -1,6 +1,6 @@
 package com.simpledev.ecommerce.domain.entity;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.time.LocalDateTime;
 
@@ -10,7 +10,7 @@ class OrderCodeTest {
 
 	@Test
 	void shouldGenerateAnOrderCode() {
-		OrderCode code = new OrderCode(LocalDateTime.of(2022, 3, 10, 1, 0), 1);
+		OrderCode code = new OrderCode(LocalDateTime.of(2022, 3, 10, 1, 0), 1l);
 		assertEquals("202200000001", code.getValue());
 	}
 

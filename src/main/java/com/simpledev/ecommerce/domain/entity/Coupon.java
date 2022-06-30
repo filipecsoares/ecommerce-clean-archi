@@ -1,6 +1,5 @@
 package com.simpledev.ecommerce.domain.entity;
 
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 public class Coupon {
@@ -24,13 +23,9 @@ public class Coupon {
 	public int getPercentage() {
 		return this.percentage;
 	}
-	
+
 	public String getCode() {
 		return code;
-	}
-
-	public BigDecimal calculateDiscount(BigDecimal total) {
-		return total.multiply(BigDecimal.valueOf(this.getPercentage())).divide(BigDecimal.valueOf(100));
 	}
 
 	public boolean isExpired(LocalDateTime today) {
