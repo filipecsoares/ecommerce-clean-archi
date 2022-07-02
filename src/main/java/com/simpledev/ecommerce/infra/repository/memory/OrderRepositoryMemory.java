@@ -23,4 +23,14 @@ public class OrderRepositoryMemory implements OrderRepository {
 	public long count() {
 		return this.orders.size();
 	}
+
+	@Override
+	public Order get(String code) {
+		return this.orders.stream().filter(order -> code.equals(order.getCode())).findFirst().orElseThrow();
+	}
+
+	@Override
+	public List<Order> list() {
+		return this.orders;
+	}
 }

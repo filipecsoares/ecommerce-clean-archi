@@ -1,5 +1,8 @@
 package com.simpledev.ecommerce.infra.repository.database;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.simpledev.ecommerce.domain.entity.Order;
@@ -45,4 +48,20 @@ public class OrderRepositoryDatabase implements OrderRepository {
 		return orderJPARepository.count();
 	}
 
+	@Override
+	public Order get(String code) {
+		return orderJPARepository.findByCode(code).stream()
+				.map(order -> new Order(order.getCpf(), order.getIssueDate(), order.getSequence())).findFirst()
+				.orElseThrow();
+	}
+
+	@Override
+	public List<Order> list() {
+		List<Order> orders = new ArrayList<>();
+		List<String> codes = orderJPARepository.findCodes();
+		for (String code : codes) {
+			orders.add(get(code));
+		}
+		return orders;
+	}
 }
