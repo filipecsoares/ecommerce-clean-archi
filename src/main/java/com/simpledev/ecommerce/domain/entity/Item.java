@@ -16,6 +16,9 @@ public class Item {
 	}
 
 	public Item(Long id, String description, BigDecimal price, Dimension dimension, double weight) {
+		if (weight < 0) {
+			throw new IllegalArgumentException("Invalid weight");
+		}
 		this.id = id;
 		this.description = description;
 		this.price = price;

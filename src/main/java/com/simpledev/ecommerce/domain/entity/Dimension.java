@@ -7,6 +7,9 @@ public class Dimension {
 	private double length;
 
 	public Dimension(double width, double height, double length) {
+		if (width < 0 || height < 0 || length < 0) {
+			throw new IllegalArgumentException("Invalid dimension");
+		}
 		this.width = width;
 		this.height = height;
 		this.length = length;
