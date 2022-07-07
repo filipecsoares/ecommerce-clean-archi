@@ -1,6 +1,7 @@
 package com.simpledev.ecommerce.application;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -21,18 +22,10 @@ import com.simpledev.ecommerce.infra.repository.memory.CouponRepositoryMemory;
 import com.simpledev.ecommerce.infra.repository.memory.ItemRepositoryMemory;
 import com.simpledev.ecommerce.infra.repository.memory.OrderRepositoryMemory;
 
-class GetOrdersTest {
+class GetOrderTest {
 
 	@Test
-	void shouldGetZeroOrdersIfTheresNoOrders() {
-		OrderRepository orderRepository = new OrderRepositoryMemory();
-		GetOrders getOrders = new GetOrders(orderRepository);
-		List<OrderOutput> output = getOrders.execute();
-		assertEquals(0, output.size());
-	}
-
-	@Test
-	void shouldGetOrders() {
+	void shouldGetOrderByCode() {
 		ItemRepository itemRepository = new ItemRepositoryMemory();
 		itemRepository.save(new Item(1L, "Guitarra", BigDecimal.valueOf(1000), new Dimension(100, 30, 10), 3));
 		itemRepository.save(new Item(2L, "Amplificador", BigDecimal.valueOf(5000), new Dimension(50, 50, 50), 20));
@@ -46,12 +39,12 @@ class GetOrdersTest {
 		List<OrderItemInput> orderItems = Arrays.asList(item1, item2, item3);
 		PlaceOrderInput input = new PlaceOrderInput("918.461.310-65", orderItems, LocalDateTime.of(2022, 3, 10, 1, 0));
 		placeOrder.execute(input);
-		placeOrder.execute(input);
 
-		GetOrders getOrders = new GetOrders(orderRepository);
-		List<OrderOutput> output = getOrders.execute();
-		assertEquals(2, output.size());
-		assertEquals("202200000001", output.get(0).getCode());
-		assertEquals(BigDecimal.valueOf(6350.0), output.get(0).getTotal());
+		GetOrder getOrder = new GetOrder(orderRepository);
+		OrderOutput output = getOrder.execute("202200000001");
+		assertNotNull(output);
+		assertEquals("202200000001", output.getCode());
+		assertEquals(BigDecimal.valueOf(6350.0), output.getTotal());
 	}
+
 }
