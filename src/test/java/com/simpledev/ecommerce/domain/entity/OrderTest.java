@@ -8,6 +8,7 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 import org.junit.jupiter.api.Test;
+import org.springframework.dao.DuplicateKeyException;
 
 class OrderTest {
 
@@ -81,5 +82,19 @@ class OrderTest {
 
 		assertEquals(BigDecimal.valueOf(2551.0), order.getTotal());
 		assertEquals("202200000001", order.getCode());
+	}
+
+	@Test
+	void shouldThrowsIfItemAddedMoreThanOnce() {
+		Exception exception = assertThrows(DuplicateKeyException.class, () -> {
+			Order order = new Order("918.461.310-65");
+			order.addItem(new Item(1L, "Guitar", BigDecimal.valueOf(1000)), 1);
+			order.addItem(new Item(1L, "Guitar", BigDecimal.valueOf(1000)), 1);
+		});
+
+		String expectedMessage = "Duplicated item";
+		String actualMessage = exception.getMessage();
+
+		assertTrue(actualMessage.contains(expectedMessage));
 	}
 }

@@ -17,7 +17,7 @@ class OrderItemTest {
 	}
 
 	@Test
-	void shouldThrowIfQuantityIsNegativeCreateAnOrderItem() {
+	void shouldThrowsIfQuantityIsNegativeCreateAnOrderItem() {
 		Exception exception = assertThrows(IllegalArgumentException.class, () -> {
 			new OrderItem(1L, BigDecimal.valueOf(100), -2);
 		});

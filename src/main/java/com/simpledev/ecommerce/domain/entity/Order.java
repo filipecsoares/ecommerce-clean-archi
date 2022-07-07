@@ -5,6 +5,8 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.dao.DuplicateKeyException;
+
 public class Order {
 
 	private Cpf cpf;
@@ -34,14 +36,21 @@ public class Order {
 	}
 
 	public void addItem(Item item, int quantity) {
+		if (isDuplicated(item)) {
+			throw new DuplicateKeyException("Duplicated item");
+		}
 		this.freigth.addItem(item, quantity);
 		this.items.add(new OrderItem(item.getId(), item.getPrice(), quantity));
+	}
+
+	private boolean isDuplicated(final Item item) {
+		return items.stream().anyMatch(i -> i.getIdItem().equals(item.getId()));
 	}
 
 	public Cpf getCpf() {
 		return cpf;
 	}
-	
+
 	public void setItems(List<OrderItem> items) {
 		this.items = items;
 	}
@@ -75,7 +84,7 @@ public class Order {
 	public List<OrderItem> getItems() {
 		return items;
 	}
-	
+
 	public void setCoupon(OrderCoupon coupon) {
 		this.coupon = coupon;
 	}
@@ -91,7 +100,7 @@ public class Order {
 	public Freight getFreigth() {
 		return freigth;
 	}
-	
+
 	public Long getSequence() {
 		return sequence;
 	}
