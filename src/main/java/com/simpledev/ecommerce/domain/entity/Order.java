@@ -41,6 +41,10 @@ public class Order {
 	public Cpf getCpf() {
 		return cpf;
 	}
+	
+	public void setItems(List<OrderItem> items) {
+		this.items = items;
+	}
 
 	public BigDecimal getTotal() {
 		BigDecimal total = BigDecimal.ZERO;
@@ -70,6 +74,10 @@ public class Order {
 
 	public List<OrderItem> getItems() {
 		return items;
+	}
+	
+	public void setCoupon(OrderCoupon coupon) {
+		this.coupon = coupon;
 	}
 
 	public OrderCoupon getCoupon() {

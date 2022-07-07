@@ -2,10 +2,12 @@ package com.simpledev.ecommerce.infra.repository.database;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.simpledev.ecommerce.domain.entity.Order;
+import com.simpledev.ecommerce.domain.entity.OrderCoupon;
 import com.simpledev.ecommerce.domain.entity.OrderItem;
 import com.simpledev.ecommerce.domain.repository.OrderRepository;
 import com.simpledev.ecommerce.infra.repository.database.jparepositories.OrderItemJPARepository;
@@ -50,9 +52,16 @@ public class OrderRepositoryDatabase implements OrderRepository {
 
 	@Override
 	public Order get(String code) {
-		return orderJPARepository.findByCode(code).stream()
-				.map(order -> new Order(order.getCpf(), order.getIssueDate(), order.getSequence())).findFirst()
-				.orElseThrow();
+		OrderModel orderModel = orderJPARepository.findByCode(code).stream().findFirst().orElseThrow();
+		Order order = new Order(orderModel.getCpf(), orderModel.getIssueDate(), orderModel.getSequence());
+		List<OrderItemModel> items = orderItemJPARepository.findByIdOrder(orderModel.getId());
+		order.setItems(items.stream().map(item -> new OrderItem(item.getIdItem(), item.getPrice(), item.getQuantity()))
+				.collect(Collectors.toList()));
+		if (orderModel.getCouponCode() != null) {
+			order.setCoupon(new OrderCoupon(orderModel.getCouponCode(), orderModel.getCouponPercentage()));
+		}
+		return order;
+
 	}
 
 	@Override
