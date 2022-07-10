@@ -8,6 +8,7 @@ import com.simpledev.ecommerce.application.dto.PlaceOrderOutput;
 import com.simpledev.ecommerce.domain.entity.Coupon;
 import com.simpledev.ecommerce.domain.entity.Item;
 import com.simpledev.ecommerce.domain.entity.Order;
+import com.simpledev.ecommerce.domain.factory.RepositoryFactory;
 import com.simpledev.ecommerce.domain.repository.CouponRepository;
 import com.simpledev.ecommerce.domain.repository.ItemRepository;
 import com.simpledev.ecommerce.domain.repository.OrderRepository;
@@ -18,11 +19,10 @@ public class PlaceOrder {
 	private final OrderRepository orderRepository;
 	private final CouponRepository couponRepository;
 
-	public PlaceOrder(ItemRepository itemRepository, OrderRepository orderRepository,
-			CouponRepository couponRepository) {
-		this.itemRepository = itemRepository;
-		this.orderRepository = orderRepository;
-		this.couponRepository = couponRepository;
+	public PlaceOrder(RepositoryFactory repositoryFactory) {
+		this.itemRepository = repositoryFactory.createItemRepository();
+		this.orderRepository = repositoryFactory.createOrderRepository();
+		this.couponRepository = repositoryFactory.createCouponRepository();
 	}
 
 	public PlaceOrderOutput execute(PlaceOrderInput input) {

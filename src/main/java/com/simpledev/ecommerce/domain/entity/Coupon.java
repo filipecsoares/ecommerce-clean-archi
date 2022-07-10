@@ -28,6 +28,10 @@ public class Coupon {
 		return code;
 	}
 
+	public LocalDateTime getExpiredAt() {
+		return expiredAt;
+	}
+
 	public boolean isExpired(LocalDateTime today) {
 		return this.expiredAt.isBefore(today);
 	}
