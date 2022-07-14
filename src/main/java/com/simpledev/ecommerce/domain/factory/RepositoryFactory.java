@@ -3,6 +3,7 @@ package com.simpledev.ecommerce.domain.factory;
 import com.simpledev.ecommerce.domain.repository.CouponRepository;
 import com.simpledev.ecommerce.domain.repository.ItemRepository;
 import com.simpledev.ecommerce.domain.repository.OrderRepository;
+import com.simpledev.ecommerce.domain.repository.StockEntryRepository;
 
 public interface RepositoryFactory {
 
@@ -11,4 +12,6 @@ public interface RepositoryFactory {
 	OrderRepository createOrderRepository();
 
 	CouponRepository createCouponRepository();
+
+	StockEntryRepository createStockEntryRepository();
 }
