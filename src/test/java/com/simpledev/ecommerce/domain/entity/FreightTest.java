@@ -6,10 +6,6 @@ import java.math.BigDecimal;
 
 import org.junit.jupiter.api.Test;
 
-import com.simpledev.ecommerce.domain.entity.Dimension;
-import com.simpledev.ecommerce.domain.entity.Freight;
-import com.simpledev.ecommerce.domain.entity.Item;
-
 class FreightTest {
 
 	@Test

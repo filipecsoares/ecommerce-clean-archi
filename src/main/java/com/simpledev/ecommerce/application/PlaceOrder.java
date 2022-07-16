@@ -8,21 +8,25 @@ import com.simpledev.ecommerce.application.dto.PlaceOrderOutput;
 import com.simpledev.ecommerce.domain.entity.Coupon;
 import com.simpledev.ecommerce.domain.entity.Item;
 import com.simpledev.ecommerce.domain.entity.Order;
+import com.simpledev.ecommerce.domain.event.OrderPlaced;
 import com.simpledev.ecommerce.domain.factory.RepositoryFactory;
 import com.simpledev.ecommerce.domain.repository.CouponRepository;
 import com.simpledev.ecommerce.domain.repository.ItemRepository;
 import com.simpledev.ecommerce.domain.repository.OrderRepository;
+import com.simpledev.ecommerce.infra.queue.Queue;
 
 public class PlaceOrder {
 
 	private final ItemRepository itemRepository;
 	private final OrderRepository orderRepository;
 	private final CouponRepository couponRepository;
+	private final Queue queue;
 
-	public PlaceOrder(RepositoryFactory repositoryFactory) {
+	public PlaceOrder(RepositoryFactory repositoryFactory, Queue queue) {
 		this.itemRepository = repositoryFactory.createItemRepository();
 		this.orderRepository = repositoryFactory.createOrderRepository();
 		this.couponRepository = repositoryFactory.createCouponRepository();
+		this.queue = queue;
 	}
 
 	public PlaceOrderOutput execute(PlaceOrderInput input) {
@@ -37,6 +41,8 @@ public class PlaceOrder {
 			order.addCoupon(coupon);
 		}
 		this.orderRepository.save(order);
+		OrderPlaced orderPlaced = new OrderPlaced(order.getCode(), order.getItems());
+		queue.publish(orderPlaced);
 		BigDecimal total = order.getTotal();
 		return new PlaceOrderOutput(total, order.getCode());
 	}
