@@ -32,9 +32,9 @@ public class PlaceOrder {
 	public PlaceOrderOutput execute(PlaceOrderInput input) {
 		Long sequence = this.orderRepository.count() + 1;
 		Order order = new Order(input.getCpf(), input.getCreatedAt(), sequence);
-		for (OrderItemInput ordemItem : input.getOrdemItems()) {
-			Item item = this.itemRepository.get(ordemItem.getIdItem());
-			order.addItem(item, ordemItem.getQuantity());
+		for (OrderItemInput orderItem : input.getOrdemItems()) {
+			Item item = this.itemRepository.get(orderItem.getIdItem());
+			order.addItem(item, orderItem.getQuantity());
 		}
 		if (input.getCoupon() != null) {
 			Coupon coupon = this.couponRepository.get(input.getCoupon());
